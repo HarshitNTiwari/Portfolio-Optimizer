@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template, url_for
-import pickle
 import PortfolioOptimizer as PortOpt
 import numpy as np
 
