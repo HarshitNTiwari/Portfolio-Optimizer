@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')   #decorator for home page
 def hello():
-    return render_template('home.html')
+    return render_template('index.html')
  
 @app.route('/about')
 def about():
@@ -31,7 +31,7 @@ def calculate():
             str1 = str(y[i])
             str1+= "% in " + tickers[i] + ", "
             output+=str1
-        return render_template('home.html', pred='Your optimal portfolio distribution is: {}'.format(output)) 
+        return render_template('index.html', pred='Your optimal portfolio distribution is: {}'.format(output)) 
 
 
 # Running in debug mode
