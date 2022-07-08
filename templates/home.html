@@ -1,0 +1,56 @@
+{% extends "layout.html" %}  
+<!-- overriding the 'content' block -->
+{% block content %}
+	
+<div class="table">
+	<div class="row">
+    	<form action='/predict' method="POST" class="col s12">
+
+        <div class="row">
+            <h1 class="header center orange-text">Portfolio Optimization Tool</h1>
+        </div>
+
+        <div class="row">
+            <h5 class="header col s12 light">Enter the tickers of the companies you wish to invest in and the tool will return you the optimal portfolio...
+            <br>
+            </h5>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-field col s4">
+                    <label for="first_name"><b>Enter space-separated tickers:</b></label>
+                    <br>
+                  	<input id="first_name" name="tickers" type="text" placeholder="MSFT NFLX">
+                </div>
+
+                <!-- <div class="input-field col s4">
+                 	<label for="last_name"><b>Oxygen </b>
+                  	</label>
+                    <br>
+                  	<input id="last_name"  name="Oxygen" type="text" class="validate">
+                </div>
+
+                <div class="input-field col s4">
+                    <label for="_name"><b>Humidity</b></label>
+                    <br>
+                  	<input id="_name" name="Humidity" type="text" class="validate">
+                </div> --> 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="button">Calculate optimal portfolio
+                </button>
+            </div>
+        </div>
+
+        <br> {{pred}} <br>
+
+    	</form>
+    </div>
+</div>
+
+
+{% endblock content %}
