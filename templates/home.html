@@ -21,7 +21,7 @@
                 <div class="input-field col s4">
                     <label for="first_name"><b>Enter space-separated tickers:</b></label>
                     <br>
-                  	<input id="first_name" name="tickers" type="text" placeholder="MSFT NFLX">
+                  	<input id="tickers" name="tickers" type="text" placeholder="MSFT NFLX">
                 </div>
 
                 <!-- <div class="input-field col s4">
@@ -46,7 +46,15 @@
             </div>
         </div>
 
-        <br> {{pred}} <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <br> <b>{{pred}}</b> <br>
 
     	</form>
     </div>

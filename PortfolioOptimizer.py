@@ -3,6 +3,7 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 import scipy.optimize as optimization
+from yfinance import shared
 
 # On average there are 252 trading days in a year
 NUM_TRADING_DAYS = 252
@@ -111,7 +112,7 @@ def show_optimal_portfolio(opt, rets, portfolio_rets, portfolio_vols):
   plt.show()
 
 def main(stocks):
-  dataset = download_data(stocks)
+  dataset, error_message = download_data(stocks)
   # Printing the stock price Dataframe of last 1 decade 
   # print(dataset)
   # Plotting the comparative stock price chart for the 6 companies

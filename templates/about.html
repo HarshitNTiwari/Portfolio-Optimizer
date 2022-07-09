@@ -2,8 +2,20 @@
 {% extends "layout.html" %}  
 <!-- overriding the 'content' block -->
 {% block content %}
-	<h1>About Portfolio Optimizer</h1>
+	<h1>About Sharp Portfolio</h1>
 	<p>
-		This is a web implementation of Harry Markowitz's Portfolio Theory.
+		This is a web implementation of Harry Markowitz's <a href="https://en.wikipedia.org/wiki/Markowitz_model">Portfolio Theory</a>. The tool fetches historical stock data from <a href="https://finance.yahoo.com/">Yahoo! Finance</a> and uses satistical methods of mean and variance to calculate the most optimal portfolio distribution. 
+		<br>
+		The application is built with Flask framework for the backend and uses basic HTML & CSS for the front end.
+
+		<h3>What's with the name?</h3>
+		The algorithm behind this application generates 10000 different portfolio distributions and then picks the one from the <a href="https://en.wikipedia.org/wiki/Efficient_frontier">efficient frontier </a> which has the maximum <a href="https://en.wikipedia.org/wiki/Sharpe_ratio">Sharpe Ratio</a> - a performance measure for investments developed by William F. Sharpe. <br>
+		Hence the name <i>Sharp Portfolio</i>!
+		<br>
+		<hr>
+		<h3>About the creator</h3>
+		I'm Harshit Tiwari, an engineering undergraduate from Jaipur, India. I'm enthusiastic about programming and finance and this project sits at the intersection of both of them.<br>
+		Have feedback about the project or wish to talk?
+		Feel free to connect with me via <a href="https://www.linkedin.com/in/harshitntiwari/">LinkedIn</a> or <a href="https://twitter.com/HarshitNTiwari">Twitter</a> or email me at: harshitntiwari[at]pm[dot]me
 	</p>
 {% endblock content %}
