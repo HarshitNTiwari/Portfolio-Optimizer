@@ -1,6 +1,9 @@
-# Sharp-Optimizer
+# Sharp-Portfolio
 This project is a Web application that uses Harry Markowiitz's [Portfolio Optimization model](https://en.wikipedia.org/wiki/Markowitz_model) to generate optimal portfolios.
-It is built using Flask.
+
+It is built using Flask and uses basic HTML, CSS for front-end. The project is [deployed](https://sharp-portfolio.herokuapp.com/) on Heroku.
+
+
 
 The user can enter the tickers of the companies they wish to invest in, and the tool will generate an optimal portfolio; it'll show you what percentage of your total capital you should invest in which company.
 
