@@ -112,7 +112,7 @@ def show_optimal_portfolio(opt, rets, portfolio_rets, portfolio_vols):
   plt.show()
 
 def main(stocks):
-  dataset, error_message = download_data(stocks)
+  dataset = download_data(stocks)
   # Printing the stock price Dataframe of last 1 decade 
   # print(dataset)
   # Plotting the comparative stock price chart for the 6 companies
