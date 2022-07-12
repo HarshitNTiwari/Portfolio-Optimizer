@@ -18,31 +18,16 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="input-field col s4">
-                    <label for="first_name"><b>Enter space-separated tickers:</b></label>
-                    <br>
-                  	<input id="tickers" name="tickers" type="text" placeholder="MSFT NFLX">
+                <div class="form-group">
+                    <label for="tickers">Enter space-separated tickers:</label>
+                    <input type="text" name="tickers" class="form-control" id="tickers" placeholder="MSFT NFLX">
                 </div>
-
-                <!-- <div class="input-field col s4">
-                 	<label for="last_name"><b>Oxygen </b>
-                  	</label>
-                    <br>
-                  	<input id="last_name"  name="Oxygen" type="text" class="validate">
-                </div>
-
-                <div class="input-field col s4">
-                    <label for="_name"><b>Humidity</b></label>
-                    <br>
-                  	<input id="_name" name="Humidity" type="text" class="validate">
-                </div> --> 
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4">
-                <button type="submit" class="button">Calculate optimal portfolio
-                </button>
+                <button type="submit" class="btn btn-primary">Calculate optimal portfolio</button>
             </div>
         </div>
 
@@ -53,8 +38,6 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-
-        <br> <b>{{pred}}</b> <br>
 
     	</form>
     </div>

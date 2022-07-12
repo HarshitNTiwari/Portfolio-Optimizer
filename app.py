@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, url_for, flash
+from flask import Flask, request, render_template, url_for, flash, redirect
 import PortfolioOptimizer as PortOpt
 import numpy as np
 
@@ -19,6 +19,10 @@ def about():
 def calculate():
     if request.method == "POST":
         t = request.form["tickers"]
+        #if input field is blank:
+        if(t==""):
+            flash("Input field cannot be blank!", "warning")
+            return redirect(request.referrer)
         tickers = t.split()
         print(tickers)
         optimum = PortOpt.main(tickers)
@@ -32,9 +36,11 @@ def calculate():
             str1+= "% in " + tickers[i] + ", "
             output+=str1
         flash("Portfolio generated successfully!", "info")
-        return render_template('home.html', pred='Your optimal portfolio distribution is: {}'.format(output)) 
+        flash("Your optimal portfolio distribution is: " + output, "info")
+        return redirect(request.referrer)  # to return to the same page after form submission
     else:
         return render_template('home.html')
+    
 
 
 # Running in debug mode
