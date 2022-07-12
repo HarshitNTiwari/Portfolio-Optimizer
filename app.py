@@ -20,9 +20,9 @@ def calculate():
     if request.method == "POST":
         t = request.form["tickers"]
         #if input field is blank:
-        if(t==""):
-            flash("Input field cannot be blank!", "warning")
-            return redirect(request.referrer)
+        # if(t==""):
+        #     flash("Input field cannot be blank!", "warning")
+        #     return redirect(request.referrer)
         tickers = t.split()
         print(tickers)
         optimum = PortOpt.main(tickers)

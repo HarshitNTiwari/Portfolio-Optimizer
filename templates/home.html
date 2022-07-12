@@ -4,7 +4,6 @@
 	
 <div class="table">
 	<div class="row">
-    	<form action='/predict' method="POST" class="col s12">
 
         <div class="row">
             <h1 class="header center orange-text">Portfolio Optimization Tool</h1>
@@ -16,32 +15,32 @@
             </h5>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="tickers">Enter space-separated tickers:</label>
-                    <input type="text" name="tickers" class="form-control" id="tickers" placeholder="MSFT NFLX">
+        <form action='/predict' method="POST" class="col s12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tickers">Enter space-separated tickers:</label>
+                        <input type="text" name="tickers" class="form-control" id="tickers" placeholder="MSFT NFLX" required>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <button type="submit" class="btn btn-primary">Calculate optimal portfolio</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Calculate optimal portfolio</button>
+                </div>
             </div>
-        </div>
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for msg in messages %}
-                    <p>{{msg}}</p>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p>{{msg}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
 
     	</form>
     </div>
 </div>
-
 
 {% endblock content %}
