@@ -1,46 +1,89 @@
 from flask import Flask, request, render_template, url_for, flash, redirect
-import PortfolioOptimizer as PortOpt
-import numpy as np
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from user import User
+
+from database import get_user, save_user_info
+
+from calculate import Calculate_portfolio
+from database import get_user
 
 app = Flask(__name__)
 app.secret_key = b'hdhcbchhh'
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 
-# list of dictionaries
-
-@app.route('/')   #decorator for home page
-def hello():
+# home page
+@app.route('/')   
+def home():
     return render_template('home.html')
  
 @app.route('/about')
 def about():
     return render_template('about.html', title='About')
 
-@app.route('/predict', methods=['POST','GET'])
+@app.route('/calculate', methods=['POST','GET'])
 def calculate():
     if request.method == "POST":
-        t = request.form["tickers"]
-        #if input field is blank:
-        # if(t==""):
-        #     flash("Input field cannot be blank!", "warning")
-        #     return redirect(request.referrer)
-        tickers = t.split()
-        print(tickers)
-        optimum = PortOpt.main(tickers)
-        print(optimum.x)
-        y = optimum.x
-        output=""
-        for i in range (len(y)):
-            y[i]*=100
-            y[i]= round(y[i],3)
-            str1 = str(y[i])
-            str1+= "% in " + tickers[i] + ", "
-            output+=str1
+        tickers = request.form["tickers"]
+        output = Calculate_portfolio(tickers)
         flash("Portfolio generated successfully!", "info")
-        flash("Your optimal portfolio distribution is: " + output, "info")
-        return redirect(request.referrer)  # to return to the same page after form submission
-    else:
-        return render_template('home.html')
+        flash( output, "info")
+        # return redirect(request.referrer)  # to return to the same page after form submission
+        return redirect(url_for('home'))
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    message = ""
+    if request.method == 'POST':
+        username = request.form['username']
+        password_input = request.form['password']
+        user = get_user(username)
+        if user and user.check_password(password_input):
+            login_user(user)
+            message = 'Hi '+current_user.username+', You have been Logged in!'
+            return redirect(url_for('home'))
+        else:
+            message = 'Invalid Credentials. Failed to login!'
+    return render_template('login.html', message=message)
+
     
+@app.route('/signup', methods=['POST','GET'])
+def signup():
+    message = ""
+    if request.method == 'POST':
+        email = request.form['email']
+        username = request.form['username']
+        password_input = request.form['password']
+        if(get_user(username)!=None):
+            message = 'Username already exists! Please try a different username.'
+            return render_template('signup.html', message=message) 
+        else:
+            save_user_info(username, email, password_input)
+            return redirect(url_for('login'))
+    else:
+        return render_template('signup.html')
+
+@app.route('/logout')
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+    else:
+        flash("You're not Logged in!")
+    return redirect(url_for('home'))
+
+
+
+@app.route('/save', methods=['POST','GET'])
+@login_required
+def save_portfolio():
+    return redirect(url_for('about'))
+
+
+@login_manager.user_loader
+def load_user(username):
+    return get_user(username)
 
 
 # Running in debug mode

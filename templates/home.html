@@ -15,7 +15,7 @@
             </h5>
         </div>
 
-        <form action='/predict' method="POST" class="col s12">
+        <form action='/calculate' method="POST" class="col s12">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -34,13 +34,27 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for msg in messages %}
-                        <p>{{msg}}</p>
+                        {{msg}}
                     {% endfor %}
                 {% endif %}
             {% endwith %}
 
+
     	</form>
     </div>
+
+    <div class="row">
+        <form action='/save' method="POST" class="col s12">
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary" id="save">Save portfolio</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+    
 </div>
 
 {% endblock content %}
