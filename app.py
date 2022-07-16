@@ -2,16 +2,18 @@ from flask import Flask, request, render_template, url_for, flash, redirect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from user import User
 
-from database import get_user, save_user_info
-
 from calculate import Calculate_portfolio
-from database import get_user
+from format import format_output, create_dict
+from database import get_user, save_user_info, save_portfolio_info
 
 app = Flask(__name__)
 app.secret_key = b'hdhcbchhh'
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+ticker = []
+weigh = []
 
 # home page
 @app.route('/')   
@@ -26,11 +28,16 @@ def about():
 def calculate():
     if request.method == "POST":
         tickers = request.form["tickers"]
-        output = Calculate_portfolio(tickers)
+        weights = Calculate_portfolio(tickers)
+        weigh.append(weights)
+        ticker.append(tickers)
+        output = format_output(tickers, weights)
         flash("Portfolio generated successfully!", "info")
-        flash( output, "info")
+        flash( "Your optimal portfolio distribution is: "+output, "info")
         # return redirect(request.referrer)  # to return to the same page after form submission
         return redirect(url_for('home'))
+def give_list():
+    return tickers, weights
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -74,11 +81,29 @@ def logout():
     return redirect(url_for('home'))
 
 
-
 @app.route('/save', methods=['POST','GET'])
 @login_required
 def save_portfolio():
-    return redirect(url_for('about'))
+    weights = weigh.pop()
+    tickers = ticker.pop()
+    username = current_user.get_id()
+    print(username)
+    print(weights)
+    print(tickers)
+    if(len(weights)!=0):
+        tickers = tickers.split()
+        portfolio_dict = create_dict(tickers, weights)
+        print(portfolio_dict)
+        save_portfolio_info(username, portfolio_dict)
+        flash('Portfolio saved Successfully!')
+    else:
+        flash('Please create a portfolio first!')
+    return redirect(url_for('home'))
+
+@app.route('/account', methods=['POST','GET'])
+@login_required
+def account():
+    return render_template('account.html')
 
 
 @login_manager.user_loader
