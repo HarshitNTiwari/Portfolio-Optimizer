@@ -1,4 +1,4 @@
-# Contains all the logic to connect to and interaxt with the database.
+# Contains all the logic to connect to and interact with the database.
 
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash

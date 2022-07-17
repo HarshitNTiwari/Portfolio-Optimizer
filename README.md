@@ -5,8 +5,8 @@ This project is a Web application that uses Harry Markowiitz's [Portfolio Optimi
 
 Some of the **key features** are:
 
-- Users can calculate the optimal portfolio by simply enetring the stock tickers 
-- Users can create an account by signing up and can login if they have existing account.
+- Users can calculate the optimal portfolio by simply entering the stock tickers.
+- Users can create an account by signing up and can login if they have an existing account.
 - Users can save a particular portfolio and can later view all the saved portfolios in their account.
 
 ## Tech stack used:
@@ -18,7 +18,7 @@ Some of the **key features** are:
 The project is [deployed](https://sharp-portfolio.herokuapp.com/) on Heroku.
 
 
-
+## Project Structure
 
 
 The main portfolio optimizing algorithm is written in `PortfolioOptimizer.py` and the script for the Flask application is written in `app.py`.
