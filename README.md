@@ -1,6 +1,6 @@
 # Sharp-Portfolio 
 
-![Sharp-portfolio-gif](https://github.com/[HarshitNTiwari]/[Portfolio-Optimizer]/blob/[main]/Sharp-portfolio-gif.gif?raw=true)
+![Sharp-portfolio-gif](https://github.com/HarshitNTiwari/Portfolio-Optimizer/blob/main/Sharp-portfolio-gif.gif?raw=true)
 
 ## About the project
 This project is a Web application that uses Harry Markowiitz's [Portfolio Optimization model](https://en.wikipedia.org/wiki/Markowitz_model) to generate optimal portfolios. The user can enter the tickers of the companies they wish to invest in, and the tool will generate an optimal portfolio; it'll show you what percentage of your total capital you should invest in which company.
