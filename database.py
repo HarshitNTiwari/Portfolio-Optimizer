@@ -1,4 +1,5 @@
-# contains all the logic to connect to the database.
+# Contains all the logic to connect to and interaxt with the database.
+
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 from user import User
@@ -19,9 +20,16 @@ def get_user(username):
 	user_data = users_collection.find_one({'_id': username})
 	return User(user_data['_id'], user_data['email'], user_data['password']) if user_data else None
 
+# to save portfolio info
 def save_portfolio_info(username, portfolio_dict):
 	user_data = portfolio_collection.find_one({'_id': username})
 	if(user_data==None):
 		portfolio_collection.insert_one({'_id': username, 'stocks': [portfolio_dict]})
 	else:
 		portfolio_collection.update_one({'_id': username}, {'$push': {'stocks': portfolio_dict}})
+
+# to fetch portfolio data from the database
+def get_portfolio(username):
+	user_data = portfolio_collection.find_one({'_id': username})
+	# return User(user_data['id'], user_data['stocks']) if user_data else None
+	return user_data['stocks']

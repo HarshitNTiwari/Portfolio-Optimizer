@@ -1,28 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<h3>{{ message }}</h3>
-<h1>Please Login to Sharp-Portfolio: </h1>
-<form action='/login' method="POST" class="col s12">
-    <div class="row">
-        <div class="col-md-6">
-        	<div class="form-group">
-                <label for="username">Enter Username</label>
-                <input type="text"  name="username" class="form-control" id="username" placeholder="Joey" required>
-                
-                <label for="room">Enter Password:</label>
-                <input type="password"  name="password" class="form-control" id="password" placeholder="1234" required>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-    </div>
-</form>
-
 <div class="row">
-    <h5>Don't have an account yet? Create one by <a href="/signup">Signing Up here</a></h5>
+    <div class="col-md-8">
+        <h3>{{ message }}</h3>
+        <h1>Please Login to Sharp-Portfolio: </h1>
+        <form action='/login' method="POST" class="col s12">
+            <div class="row">
+                <div class="col-md-6">
+                	<div class="form-group">
+                        <label for="username">Enter Username</label>
+                        <input type="text"  name="username" class="form-control" id="username" placeholder="Joey" required>
+                        
+                        <label for="room">Enter Password:</label>
+                        <input type="password"  name="password" class="form-control" id="password" placeholder="1234" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <h5>Don't have an account yet? Create one by <a href="/signup">Signing Up here</a></h5>
+        </div>
+    </div>
 </div>
 {% endblock %}

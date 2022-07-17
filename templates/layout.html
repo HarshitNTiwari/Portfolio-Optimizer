@@ -23,25 +23,33 @@
 	<!-- Navigation Bar -->
 	<header class="site-header">
 	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+
 	    <div class="container">
 	      <a class="navbar-brand mr-4" href="/">Sharp Portfolio</a>
+
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="navbar-toggler-icon"></span>
 	      </button> 
+
 	      <div class="collapse navbar-collapse" id="navbarToggle">
+	      	<!-- Navbar Left Side -->
 	        <div class="navbar-nav mr-auto">
 	          <a class="nav-item nav-link" href="/">Home</a>
 	          <a class="nav-item nav-link" href="/about">About</a>
-	        </div>
-	        <!-- Navbar Right Side -->
-	        <div class="navbar-nav">
 	          <a class="nav-item nav-link" href="https://github.com/HarshitNTiwari/Portfolio-Optimizer">GitHub</a>
+	        </div>
+
+	        <!-- Navbar Right Side -->
+	        <div class="navbar-nav ms-auto">
 	          <a class="nav-item nav-link" href="/account">My account</a>
 	          <a class="nav-item nav-link" href="/login">Login</a>
 	          <a class="nav-item nav-link" href="/logout">Logout</a>
 	        </div>
+
 	      </div>
+
 	    </div>
+
 	  </nav>
 	</header>
 
@@ -49,11 +57,10 @@
 	<main role="main" class="container">
 	  <div class="row">
 
-	    <div class="col-md-8">
 	      {% block content %}{% endblock %}
-	    </div>
+	
 
-	    <div class="col-md-4">
+	    <!-- <div class="col-md-4">
 	      <div class="content-section">
 	        <h3>Instructions to use:</h3>
 	        <p class='text-muted'> Important: This project is meant only for educational purposes and is not meant to provide actual financial intelligence. Investments must be made at your own discretion. 
@@ -74,7 +81,7 @@
 	        	</ul>
 	        </p>
 	      </div>
-	    </div>
+	    </div> -->
 	    
 	  </div>
 	</main>  

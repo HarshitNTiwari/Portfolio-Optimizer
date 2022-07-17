@@ -4,8 +4,9 @@ from user import User
 
 from calculate import Calculate_portfolio
 from format import format_output, create_dict
-from database import get_user, save_user_info, save_portfolio_info
+from database import get_user, save_user_info, save_portfolio_info, get_portfolio
 
+# Application Setup
 app = Flask(__name__)
 app.secret_key = b'hdhcbchhh'
 login_manager = LoginManager()
@@ -15,15 +16,17 @@ login_manager.login_view = "login"
 ticker = []
 weigh = []
 
-# home page
+# Home Page
 @app.route('/')   
 def home():
     return render_template('home.html')
- 
+
+# About Page
 @app.route('/about')
 def about():
     return render_template('about.html', title='About')
 
+# To handle portfolio calculations
 @app.route('/calculate', methods=['POST','GET'])
 def calculate():
     if request.method == "POST":
@@ -33,29 +36,31 @@ def calculate():
         ticker.append(tickers)
         output = format_output(tickers, weights)
         flash("Portfolio generated successfully!", "info")
-        flash( "Your optimal portfolio distribution is: "+output, "info")
+        flash( "Your optimal portfolio distribution is: " + output, "info")
         # return redirect(request.referrer)  # to return to the same page after form submission
         return redirect(url_for('home'))
-def give_list():
-    return tickers, weights
 
-
+# To handle user login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    message = ""
-    if request.method == 'POST':
-        username = request.form['username']
-        password_input = request.form['password']
-        user = get_user(username)
-        if user and user.check_password(password_input):
-            login_user(user)
-            message = 'Hi '+current_user.username+', You have been Logged in!'
-            return redirect(url_for('home'))
-        else:
-            message = 'Invalid Credentials. Failed to login!'
-    return render_template('login.html', message=message)
+    if current_user.is_authenticated:
+        flash ('You are already Logged in!')
+        return redirect(request.referrer)
+    else:
+        message = ""
+        if request.method == 'POST':
+            username = request.form['username']
+            password_input = request.form['password']
+            user = get_user(username)
+            if user and user.check_password(password_input):
+                login_user(user)
+                message = 'Hi '+current_user.username+', You have been Logged in!'
+                return redirect(url_for('home'))
+            else:
+                message = 'Invalid Credentials. Failed to login!'
+            return render_template('login.html', message=message)
 
-    
+# To handle user signup
 @app.route('/signup', methods=['POST','GET'])
 def signup():
     message = ""
@@ -72,6 +77,7 @@ def signup():
     else:
         return render_template('signup.html')
 
+# To handle user logout
 @app.route('/logout')
 def logout():
     if current_user.is_authenticated:
@@ -80,30 +86,29 @@ def logout():
         flash("You're not Logged in!")
     return redirect(url_for('home'))
 
-
+# To handle 'save portfolio' operation
 @app.route('/save', methods=['POST','GET'])
 @login_required
 def save_portfolio():
-    weights = weigh.pop()
-    tickers = ticker.pop()
-    username = current_user.get_id()
-    print(username)
-    print(weights)
-    print(tickers)
-    if(len(weights)!=0):
+    if(len(weigh)!=0):
+        weights = weigh.pop()
+        tickers = ticker.pop()
+        username = current_user.get_id()
         tickers = tickers.split()
         portfolio_dict = create_dict(tickers, weights)
-        print(portfolio_dict)
         save_portfolio_info(username, portfolio_dict)
         flash('Portfolio saved Successfully!')
     else:
         flash('Please create a portfolio first!')
     return redirect(url_for('home'))
 
+# To view 'My Account'
 @app.route('/account', methods=['POST','GET'])
 @login_required
 def account():
-    return render_template('account.html')
+    username = current_user.get_id()
+    stocks = get_portfolio(username)
+    return render_template('account.html', data = stocks)
 
 
 @login_manager.user_loader

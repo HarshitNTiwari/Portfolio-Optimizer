@@ -1,60 +1,84 @@
 {% extends "layout.html" %}  
 <!-- overriding the 'content' block -->
-{% block content %}
-	
-<div class="table">
-	<div class="row">
+{% block content %}	
+<div class="col-md-8">
+    <div class="table">
+    	<div class="row">
 
-        <div class="row">
-            <h1 class="header center orange-text">Portfolio Optimization Tool</h1>
-        </div>
-
-        <div class="row">
-            <h5 class="header col s12 light">Enter the tickers of the companies you wish to invest in and the tool will return you the optimal portfolio...
-            <br>
-            </h5>
-        </div>
-
-        <form action='/calculate' method="POST" class="col s12">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="tickers">Enter space-separated tickers:</label>
-                        <input type="text" name="tickers" class="form-control" id="tickers" placeholder="MSFT NFLX" required>
+                <h1 class="header center orange-text">Portfolio Optimization Tool</h1>
+            </div>
+
+            <div class="row">
+                <h5 class="header col s12 light">Enter the tickers of the companies you wish to invest in and the tool will return you the optimal portfolio...
+                <br>
+                </h5>
+            </div>
+
+            <form action='/calculate' method="POST" class="col s12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tickers">Enter space-separated tickers:</label>
+                            <input type="text" name="tickers" class="form-control" id="tickers" placeholder="MSFT NFLX" required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">Calculate optimal portfolio</button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Calculate optimal portfolio</button>
+                    </div>
                 </div>
-            </div>
 
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for msg in messages %}
-                        {{msg}}
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for msg in messages %}
+                            {{msg}}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
 
 
-    	</form>
-    </div>
+        	</form>
+        </div>
 
-    <div class="row">
-        <form action='/save' method="POST" class="col s12">
-            <div class="row">
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary" id="save">Save portfolio</button>
+        <div class="row">
+            <form action='/save' method="POST" class="col s12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary" id="save">Save portfolio</button>
+                    </div>
                 </div>
-            </div>
-            
-        </form>
+                
+            </form>
+        </div>    
     </div>
+</div>
 
-    
+<div class="col-md-4">
+  <div class="content-section">
+    <h3>Instructions to use:</h3>
+    <p class='text-muted'> Important: This project is meant only for educational purposes and is not meant to provide actual financial intelligence. Investments must be made at your own discretion. 
+        <ul>
+            <li>Enter space-separated tickers in the input field. E.g. MSFT NFLX</li>
+            <li>You may enter as many companies as you wish.</li>
+            <li>For some country specific companies, search the exact ticker from Yahoo! Finance first before entering. E.g. for Infosys Ltd, the NYSE ticker is 'INFY' while NSE ticker is 'INFY.NS'.</li>
+            <li>Since the algorithm is written from scratch in Python, results may take some time (maybe upto 1 min or more) to show up.</li>
+        </ul>
+    </p>
+    <h3>Notes about the project:</h3>
+    <p class='text-muted'>
+        <ul>
+            <li> The tool uses statistical methods of mean and variance to calculate returns and risks associated with different portfolios.</li>
+            <li>This idea was first proposed by Harry Markowitz in his foundational work in the field of Quantitaive Finance.</li>
+            <li> Although not the best, this technique still holds historical relevance.</li>
+            <li>Thus the results may be far from being accurate. Read more about the project on the <a href="/about">About</a> page.</li>
+        </ul>
+    </p>
+  </div>
 </div>
 
 {% endblock content %}
+
+        

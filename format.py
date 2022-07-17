@@ -1,3 +1,5 @@
+# Utility functions to format particular outputs
+
 def format_output(tickers, y):
 	tickers = tickers.split()
 	output=""

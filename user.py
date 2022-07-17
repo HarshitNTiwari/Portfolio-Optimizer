@@ -1,7 +1,7 @@
 from werkzeug.security import check_password_hash
 from flask_login import UserMixin, AnonymousUserMixin
 
-
+# User class for Flask-login
 class User(UserMixin, AnonymousUserMixin):
 	def __init__(self, username, email, password):
 		self.username = username

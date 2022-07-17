@@ -1,5 +1,12 @@
 {% extends "layout.html" %}  
-{% block content %}
 
+{% block content %}
+<div class="row">
+	<div class="col-md-8">
+		<h4>Hi {{ current_user.username }}, here is your list of saved portfolios:</h4>
+		<br>
+		{{ data }}
+	</div>
+</div>
 	
 {% endblock %}
