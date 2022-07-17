@@ -58,7 +58,7 @@ def login():
                 return redirect(url_for('home'))
             else:
                 message = 'Invalid Credentials. Failed to login!'
-            return render_template('login.html', message=message)
+    return render_template('login.html', message=message)
 
 # To handle user signup
 @app.route('/signup', methods=['POST','GET'])
