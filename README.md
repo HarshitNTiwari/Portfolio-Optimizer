@@ -1,6 +1,12 @@
 # Sharp-Portfolio
 This project is a Web application that uses Harry Markowiitz's [Portfolio Optimization model](https://en.wikipedia.org/wiki/Markowitz_model) to generate optimal portfolios.
 
+## Tech stack used:
+- Flask (Backend framework)
+- MongoDB Atlas
+- HTML
+- CSS
+
 It is built using Flask and uses basic HTML, CSS for front-end. The project is [deployed](https://sharp-portfolio.herokuapp.com/) on Heroku.
 
 
