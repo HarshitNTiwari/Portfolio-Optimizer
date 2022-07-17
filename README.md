@@ -19,7 +19,7 @@ The project is [deployed](https://sharp-portfolio.herokuapp.com/) on Heroku.
 
 
 ## Project Structure
-
+```
 .
 └── Portfolio-Optimizer/
     ├── application/
@@ -43,6 +43,6 @@ The project is [deployed](https://sharp-portfolio.herokuapp.com/) on Heroku.
     ├── Procfile
     ├── README.md
     └── requirements.txt
-
+```
 
 The main portfolio optimizing algorithm is written in `PortfolioOptimizer.py` and the script for the Flask application is written in `app.py`.
