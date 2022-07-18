@@ -1,5 +1,4 @@
 {% extends "layout.html" %}  
-<!-- overriding the 'content' block -->
 {% block content %}	
 <div class="col-md-8">
     <div class="table">
@@ -34,7 +33,7 @@
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for msg in messages %}
-                            {{msg}}
+                            <h5>{{msg}}</h5>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
@@ -79,6 +78,4 @@
   </div>
 </div>
 
-{% endblock content %}
-
-        
+{% endblock content %}        

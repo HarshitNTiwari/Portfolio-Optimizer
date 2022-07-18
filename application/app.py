@@ -54,7 +54,6 @@ def login():
             user = get_user(username)
             if user and user.check_password(password_input):
                 login_user(user)
-                message = 'Hi '+current_user.username+', You have been Logged in!'
                 return redirect(url_for('home'))
             else:
                 message = 'Invalid Credentials. Failed to login!'

@@ -41,6 +41,9 @@
 
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav ms-auto">
+	        	{% if current_user.is_autheticated %}
+	        		<a class="nav-item nav-link" href="/account">{{current_user.username}}</a>
+	        	{% endif %}
 	          <a class="nav-item nav-link" href="/account">My account</a>
 	          <a class="nav-item nav-link" href="/login">Login</a>
 	          <a class="nav-item nav-link" href="/logout">Logout</a>

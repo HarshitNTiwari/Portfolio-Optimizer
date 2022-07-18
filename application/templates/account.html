@@ -5,7 +5,31 @@
 	<div class="col-md-8">
 		<h4>Hi {{ current_user.username }}, here is your list of saved portfolios:</h4>
 		<br>
-		{{ data }}
+		
+		{% for portfolio in data %}
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Company</th>
+						<th scope="col">Percentage (%)</th>
+					<!-- 	<th scope="col">
+							<form action='/delete' method="POST" class="col s12">
+		                        <button type="submit" class="btn btn-primary" id="save">delete portfolio</button>
+				            </form>
+						</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					{% for stock, percent in portfolio.items() %}
+					<tr>
+						<td>{{stock}}</td>
+						<td>{{percent}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endfor %}
+		
 	</div>
 </div>
 	

@@ -3,28 +3,26 @@
 <div class="row">
     <div class="col-md-8">
         <h2>Welcome to Sharp-Portfolio</h2>
-        <p>Please create an account by Signing Up below</p>
+        <p>Please create an account by Signing Up below:</p>
         <h3>{{ message }}</h3>
-        <form action='/signup' method="POST" class="col s12">
+
+        <form action='/signup' method="POST" class="col s12" id="contactForm">
             <div class="row">
                 <div class="col-md-6">
                 	<div class="form-group">
 
-                        <label for="room">Enter Email ID:</label>
+                        <label for="room">Enter Email ID<sup>*</sup> :</label>
                         <input type="email"  name="email" class="form-control" id="email" placeholder="abc@example.com" required>
 
-                        <label for="username">Select a  Username:</label>
+                        <label for="username">Select a  Username<sup>*</sup> :</label>
                         <input type="text"  name="username" class="form-control" id="username" placeholder="Joey" required>
                         
-                        <label for="room">Enter Password:</label>
+                        <label for="room">Enter Password<sup>*</sup> :</label>
                         <input type="password"  name="password" class="form-control" id="password" placeholder="1234" required>
 
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">Sign Up</button>
                 </div>
             </div>
         </form>
@@ -34,4 +32,27 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function validateEmail(id){
+        var email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        if(!email_regex.test($("#"+id).val())){
+            var div = $("#"+id).closest("div");
+            div.removeClass("has-success");
+            $("#glypcn"+id).remove();
+            div.addClass("has-error has-feedback");
+            div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>');
+            return false;
+        }
+        else{
+            var div = $("#"+id).closest("div");
+            div.removeClass("has-error");
+            $("#glypcn"+id).remove();
+            div.addClass("has-success has-feedback");
+            div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>');
+                return true;
+        }
+    }
+
+</script>
 {% endblock %}
