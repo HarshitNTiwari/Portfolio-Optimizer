@@ -46,6 +46,13 @@ The project is [deployed](https://sharp-portfolio.herokuapp.com/) on Heroku.
     ├── README.md
     └── requirements.txt
 ```
+All the dependencies are listed inside `requirements.txt`.
+
 Entire code for the application is inside the `application` directory.
 The main portfolio optimizing algorithm is written in `PortfolioOptimizer.py` and the script for the Flask application is written in `app.py`.
-`database.py` contains the logic to interact with the database.
+`database.py` contains all the logic to interact with the database.
+
+## Scope of Improvements :gear:
+- In future I plan make the application more interactive. Especially the 'account' section, for the users to be able to manage their protfolios more interactively.
+- I also plan to make the user interface more appealing adding more javascript and possible using React.js.
+- For any feature request create an [issue](https://github.com/HarshitNTiwari/Portfolio-Optimizer/issues)
