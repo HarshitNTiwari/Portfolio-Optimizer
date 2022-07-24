@@ -53,6 +53,6 @@ The main portfolio optimizing algorithm is written in `PortfolioOptimizer.py` an
 `database.py` contains all the logic to interact with the database.
 
 ## Scope of Improvements :gear:
-- In future I plan make the application more interactive. Especially the 'account' section, for the users to be able to manage their protfolios more interactively.
-- I also plan to make the user interface more appealing adding more javascript and possible using React.js.
+- In future I plan to make the application more interactive. Especially the 'account' section, for the users to be able to manage their protfolios more interactively.
+- I also plan to make the user interface more appealing adding more javascript and possibly using React.js.
 - For any feature request create an [issue](https://github.com/HarshitNTiwari/Portfolio-Optimizer/issues)
