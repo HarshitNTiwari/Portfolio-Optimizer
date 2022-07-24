@@ -3,7 +3,7 @@
 ![Sharp-portfolio-gif](https://github.com/HarshitNTiwari/Portfolio-Optimizer/blob/main/Sharp-portfolio-gif.gif?raw=true)
 
 ## About the project :page_facing_up:
-This project is a Web application that uses Harry Markowitz's [Portfolio Optimization model](https://en.wikipedia.org/wiki/Markowitz_model) to generate optimal portfolios. The user can enter the tickers of the companies they wish to invest in, and the tool will generate an optimal portfolio; it'll show you what percentage of your total capital you should invest in which company.
+This project is a Web application that uses Harry Markowitz's [Portfolio Optimization model](https://en.wikipedia.org/wiki/Markowitz_model) to generate optimal portfolios[^1]. The user can enter the tickers of the companies they wish to invest in, and the tool will generate an optimal portfolio; it'll show you what percentage of your total capital you should invest in which company.
 
 Some of the **key features** are:
 
@@ -56,3 +56,5 @@ The main portfolio optimizing algorithm is written in `PortfolioOptimizer.py` an
 - In future I plan to make the application more interactive. Especially the 'account' section, for the users to be able to manage their protfolios more interactively.
 - I also plan to make the user interface more appealing adding more javascript and possibly using React.js.
 - For any feature request create an [issue](https://github.com/HarshitNTiwari/Portfolio-Optimizer/issues)
+
+[^1]: Markowitz, H. (1952). [Portfolio Selection](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1540-6261.1952.tb01525.x). The Journal of Finance, 7(1), 77–91. https://doi.org/10.1111/j.1540-6261.1952.tb01525.x
