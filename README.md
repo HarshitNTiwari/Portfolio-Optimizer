@@ -27,7 +27,7 @@ An example code to make a GET request in your python application:
 ```python
 import requests, json
 
-BASE = "http://127.0.0.1:5000/"
+BASE = "https://sharp-portfolio.herokuapp.com/"
 tickers = "MSFT NFLX INFY AMZN"
 response = requests.get(BASE + "api/" + tickers)
 ```
