@@ -11,6 +11,35 @@ Some of the **key features** are:
 - Users can create an account by signing up and can login if they have an existing account.
 - Users can save a particular portfolio and can later view all the saved portfolios in their account.
 
+## Using the API :left_right_arrow:
+
+I've created an API through which you can get access to the results of the portfolio optimizer alogorithm in your application.
+The response schema will be as follows:
+```json
+{
+    "weights": array
+    "returns": number 
+    "volatillity": number
+    "sharpe ratio": number
+}
+```
+An example code to make a GET request in your python application:
+```python
+import requests, json
+
+BASE = "http://127.0.0.1:5000/"
+tickers = "MSFT NFLX INFY AMZN"
+response = requests.get(BASE + "api/" + tickers)
+```
+The `tickers` is a space separated string of stock tickers. 
+The `response` generated is a JSON object, and in this case will return a list of weights corresponding to the respective stocks.
+
+You can get access to additional data by passing parameters in the GET request, like so:
+```python
+response = requests.get(BASE + "api/" + tickers, {"returns": True, "volatility": True, "sharpe_ratio": True})
+```
+The three additional parameters will return the percentage return, percentage risk and the [sharpe ratio](https://en.wikipedia.org/wiki/Sharpe_ratio) respectively, for the particular set of stocks. 
+
 ## Tech stack used :technologist:
 - Flask (Backend framework) - for handling all the application logic
 - MongoDB Atlas - to store user information and portfolio data
