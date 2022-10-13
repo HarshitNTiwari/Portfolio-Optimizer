@@ -122,9 +122,9 @@ def load_user(username):
 ##########################  API  ##########################
 
 parser = reqparse.RequestParser()
-parser.add_argument('returns', type=bool, help="returns hai", location='args')
-parser.add_argument('volatility', type=bool, help="returns hai", location='args')
-parser.add_argument('sharpe_ratio', type=bool, help="returns hai", location='args')
+parser.add_argument('returns', type=bool, help="returns", location='args')
+parser.add_argument('volatility', type=bool, help="volatility", location='args')
+parser.add_argument('sharpe_ratio', type=bool, help="sharpe ratio", location='args')
 
 class Stocks(Resource):
     def get(self, tickers):
