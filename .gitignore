@@ -1,2 +1,5 @@
 /__pycache__
 application/ __pycache_
+test.py
+/VIRTUAL_ENV
+/api

@@ -69,6 +69,22 @@ def print_optimal_portfolio(optimum, returns):
   print("Optimal Portflio: ", optimum['x'].round(3))   #printing the optimal weights
   print("Expected return, volatility and Sharpe Ratio: ", statistics(optimum['x'].round(3), returns)) 
 
+#-----------------API Response------------------
+def api_response(stocks, weights, show_returns, show_volatility, sharpe_ratio):
+  dataset = download_data(stocks)
+  log_daily_returns = calculate_return(dataset)
+  stats = statistics(weights.round(3), log_daily_returns)
+  weights = weights.tolist()
+  result = {
+          "weights" : weights
+  }
+  if(show_returns):
+    result.update({'returns':stats[0]})
+  if(show_volatility):
+    result.update({'volatility':stats[1]})
+  if(sharpe_ratio):
+    result.update({'sharpe ratio':stats[2]})
+  return result
 
 def main(stocks):
   dataset = download_data(stocks)
@@ -79,7 +95,9 @@ def main(stocks):
   pweights, means, risks = generate_portfolios(log_daily_returns, stocks)
  
   # Getting the optimal portfolio
-  return optimize_portfolio(pweights, log_daily_returns, stocks)
+  optimum = optimize_portfolio(pweights, log_daily_returns, stocks)
+  return optimum
+
 
 if __name__ == '__main__':
   import sys

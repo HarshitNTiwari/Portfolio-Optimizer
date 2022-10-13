@@ -1,7 +1,9 @@
-from flask import Flask, request, render_template, url_for, flash, redirect
+from flask import Flask, request, render_template, url_for, flash, redirect, jsonify
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask_restful import Api, Resource, reqparse, abort
 from user import User
 
+from PortfolioOptimizer import api_response
 from calculate import Calculate_portfolio
 from format import format_output, create_dict
 from database import get_user, save_user_info, save_portfolio_info, get_portfolio
@@ -12,6 +14,8 @@ app.secret_key = b'hdhcbchhh'
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
+
+api = Api(app)
 
 ticker = []
 weigh = []
@@ -113,6 +117,28 @@ def account():
 @login_manager.user_loader
 def load_user(username):
     return get_user(username)
+
+
+##########################  API  ##########################
+
+parser = reqparse.RequestParser()
+parser.add_argument('returns', type=bool, help="returns hai", location='args')
+parser.add_argument('volatility', type=bool, help="returns hai", location='args')
+parser.add_argument('sharpe_ratio', type=bool, help="returns hai", location='args')
+
+class Stocks(Resource):
+    def get(self, tickers):
+        ticker = tickers.split()
+        weights = Calculate_portfolio(tickers)
+        result = {}
+        x = parser.parse_args()
+
+        result = api_response(ticker, weights, x['returns'], x['volatility'], x['sharpe_ratio'])
+        return jsonify(result)
+        
+
+api.add_resource(Stocks, "/api/<string:tickers>")
+
 
 
 # Running in debug mode
