@@ -14,6 +14,7 @@ def format_output(tickers, y):
 	output+=str1
 	return output
 
+# Function to create a dictionary out of two lists
 def create_dict(tickers, weights):
 	res = dict(zip(tickers, weights))
 	return res

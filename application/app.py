@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, url_for, flash, redirect, jsonify
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from flask_restful import Api, Resource, reqparse, abort
-from user import User
+from flask_restful import Api, Resource, reqparse
+from user import User  
 
 from PortfolioOptimizer import api_response
 from calculate import Calculate_portfolio
@@ -41,7 +41,6 @@ def calculate():
         output = format_output(tickers, weights)
         flash("Portfolio generated successfully!", "info")
         flash( "Your optimal portfolio distribution is: " + output, "info")
-        # return redirect(request.referrer)  # to return to the same page after form submission
         return redirect(url_for('home'))
 
 # To handle user login
@@ -113,7 +112,7 @@ def account():
     stocks = get_portfolio(username)
     return render_template('account.html', data = stocks)
 
-
+# Callback to reload the user object from the username
 @login_manager.user_loader
 def load_user(username):
     return get_user(username)

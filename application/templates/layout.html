@@ -35,6 +35,7 @@
 	      </button> 
 
 	      <div class="collapse navbar-collapse" id="navbarToggle">
+
 	      	<!-- Navbar Left Side -->
 	        <div class="navbar-nav mr-auto">
 	          <a class="nav-item nav-link" href="/">Home</a>
@@ -44,9 +45,6 @@
 
 	        <!-- Navbar Right Side -->
 	        <div class="navbar-nav ms-auto">
-	        	{% if current_user.is_autheticated %}
-	        		<a class="nav-item nav-link" href="/account">{{current_user.username}}</a>
-	        	{% endif %}
 	          <a class="nav-item nav-link" href="/account">My account</a>
 	          <a class="nav-item nav-link" href="/login">Login/Signup</a>
 	          <a class="nav-item nav-link" href="/logout">Logout</a>
@@ -64,30 +62,6 @@
 	  <div class="row">
 
 	      {% block content %}{% endblock %}
-	
-
-	    <!-- <div class="col-md-4">
-	      <div class="content-section">
-	        <h3>Instructions to use:</h3>
-	        <p class='text-muted'> Important: This project is meant only for educational purposes and is not meant to provide actual financial intelligence. Investments must be made at your own discretion. 
-	        	<ul>
-	        		<li>Enter space-separated tickers in the input field. E.g. MSFT NFLX</li>
-	        		<li>You may enter as many companies as you wish.</li>
-	        		<li>For some country specific companies, search the exact ticker from Yahoo! Finance first before entering. E.g. for Infosys Ltd, the NYSE ticker is 'INFY' while NSE ticker is 'INFY.NS'.</li>
-	        		<li>Since the algorithm is written from scratch in Python, results may take some time (maybe upto 1 min or more) to show up.</li>
-	        	</ul>
-	        </p>
-	        <h3>Notes about the project:</h3>
-	        <p class='text-muted'>
-	        	<ul>
-	        		<li> The tool uses statistical methods of mean and variance to calculate returns and risks associated with different portfolios.</li>
-	        		<li>This idea was first proposed by Harry Markowitz in his foundational work in the field of Quantitaive Finance.</li>
-	        		<li> Although not the best, this technique still holds historical relevance.</li>
-	        		<li>Thus the results may be far from being accurate. Read more about the project on the <a href="/about">About</a> page.</li>
-	        	</ul>
-	        </p>
-	      </div>
-	    </div> -->
 	    
 	  </div>
 	</main>  
